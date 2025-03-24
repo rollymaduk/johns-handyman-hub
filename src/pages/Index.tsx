@@ -12,7 +12,7 @@ import { getHomeContent } from '@/utils/githubContent';
 import { getLucideIcon } from '@/utils/iconUtils';
 import { HomePageContent } from '@/types/content';
 
-const Index = () => {
+const Index = () => { 
   const [content, setContent] = useState<HomePageContent | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -225,7 +225,7 @@ const Index = () => {
             </div>
           </section>
         </main>
-        <Footer />
+        
       </div>
     </Layout>
   );
