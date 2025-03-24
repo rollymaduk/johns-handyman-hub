@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -147,37 +146,45 @@ const Gallery = () => {
               <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gray-200"></div>
               
               {/* Timeline Items */}
-              <div className="space-y-12">
+              <div className="space-y-24">
                 {content.processItems.map((item, index) => (
                   <div key={index} className="flex flex-col md:flex-row items-center">
                     {index % 2 === 0 ? (
                       <>
-                        <div className="md:w-1/2 md:pr-12 md:text-right mb-6 md:mb-0">
-                          <h3 className="text-xl font-display font-semibold text-brand-dark mb-2">{item.title}</h3>
-                          <p className="text-gray-600">{item.description}</p>
+                        <div className="md:w-1/2 md:pr-24 md:text-right mb-8 md:mb-0">
+                          <div className="md:mr-4">
+                            <h3 className="text-xl font-display font-semibold text-brand-dark mb-3">{item.title}</h3>
+                            <p className="text-gray-600">{item.description}</p>
+                          </div>
                         </div>
-                        <div className="md:w-1/2 md:pl-12 relative">
-                          <div className="hidden md:block absolute left-0 top-0 transform -translate-x-1/2 w-6 h-6 rounded-full bg-brand-green"></div>
-                          <img 
-                            src={item.image} 
-                            alt={item.title} 
-                            className="rounded-xl shadow-md w-full"
-                          />
+                        <div className="md:w-1/2 md:pl-24 relative">
+                          <div className="hidden md:block absolute left-0 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-brand-green border-4 border-white shadow-md z-10"></div>
+                          <div className="md:ml-4">
+                            <img 
+                              src={item.image} 
+                              alt={item.title} 
+                              className="rounded-xl shadow-md w-full"
+                            />
+                          </div>
                         </div>
                       </>
                     ) : (
                       <>
-                        <div className="md:w-1/2 md:pr-12 mb-6 md:mb-0 md:order-2">
-                          <h3 className="text-xl font-display font-semibold text-brand-dark mb-2">{item.title}</h3>
-                          <p className="text-gray-600">{item.description}</p>
+                        <div className="md:w-1/2 md:pr-24 mb-8 md:mb-0 md:order-2">
+                          <div className="md:ml-4">
+                            <h3 className="text-xl font-display font-semibold text-brand-dark mb-3">{item.title}</h3>
+                            <p className="text-gray-600">{item.description}</p>
+                          </div>
                         </div>
-                        <div className="md:w-1/2 md:pl-12 relative md:order-1 md:text-right">
-                          <div className="hidden md:block absolute right-0 top-0 transform translate-x-1/2 w-6 h-6 rounded-full bg-brand-green"></div>
-                          <img 
-                            src={item.image} 
-                            alt={item.title} 
-                            className="rounded-xl shadow-md w-full"
-                          />
+                        <div className="md:w-1/2 md:pl-24 relative md:order-1 md:text-right">
+                          <div className="hidden md:block absolute right-0 top-1/2 transform translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-brand-green border-4 border-white shadow-md z-10"></div>
+                          <div className="md:mr-4">
+                            <img 
+                              src={item.image} 
+                              alt={item.title} 
+                              className="rounded-xl shadow-md w-full"
+                            />
+                          </div>
                         </div>
                       </>
                     )}

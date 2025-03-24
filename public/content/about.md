@@ -1,13 +1,11 @@
-
 ---
 heroTitle: "Our Stories & Mission"
 heroDescription: "Learn about our journey, values, and commitment to delivering exceptional handyman services."
 storyTitle: "Building Trust Through Quality Work"
-storyContent: [
-  "John's Handyman Services was founded in 2008 with a simple mission: to provide high-quality, reliable handyman services at fair prices. What started as a one-man operation has grown into a team of skilled professionals dedicated to helping homeowners maintain and improve their properties.",
-  "Our founder, John, began his career in construction and home improvement over 20 years ago. His passion for quality craftsmanship and customer satisfaction formed the foundation of our company's values. Today, we continue to uphold these principles in every project we undertake.",
-  "We specialize in a wide range of services, from minor repairs to major renovations, and we approach each project with the same level of dedication and attention to detail. Our team consists of experienced professionals who are experts in their respective fields."
-]
+storyContent:
+  - "John's Handyman Services was founded in 2008 with a simple mission: to provide high-quality, reliable handyman services at fair prices. What started as a one-man operation has grown into a team of skilled professionals dedicated to helping homeowners maintain and improve their properties."
+  - "Our founder, John, began his career in construction and home improvement over 20 years ago. His passion for quality craftsmanship and customer satisfaction formed the foundation of our company's values. Today, we continue to uphold these principles in every project we undertake."
+  - "We specialize in a wide range of services, from minor repairs to major renovations, and we approach each project with the same level of dedication and attention to detail. Our team consists of experienced professionals who are experts in their respective fields."
 experienceYears: 15
 values:
   - title: "Quality Workmanship"

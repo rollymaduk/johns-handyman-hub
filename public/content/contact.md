@@ -36,8 +36,6 @@ faqDescription: "Find answers to our most commonly asked questions."
 faqItems:
   - question: "What areas do you serve?"
     answer: "We currently serve the Randburg area and surrounding regions within a 30-mile radius. Contact us to confirm service availability in your location."
-  - question: "Are you licensed and insured?"
-    answer: "Yes, we are fully licensed and insured. We can provide proof of insurance upon request."
   - question: "Do you provide free estimates?"
     answer: "Yes, we provide free estimates for all projects. Contact us to schedule a consultation."
   - question: "How soon can you start on my project?"

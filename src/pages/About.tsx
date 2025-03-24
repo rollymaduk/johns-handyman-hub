@@ -17,6 +17,7 @@ const About = () => {
     async function loadContent() {
       try {
         const aboutContent = await getAboutContent();
+        console.log('About content:', aboutContent);
         setContent(aboutContent);
       } catch (error) {
         console.error('Failed to load about content:', error);
@@ -91,9 +92,9 @@ const About = () => {
               <div className="space-y-6 stagger-animation">
                 <span className="text-brand-green text-sm font-medium uppercase tracking-wider">Our Story</span>
                 <h2 className="text-3xl md:text-4xl font-display font-bold text-brand-dark">
-                  {content.storyTitle}
+                  {content?.storyTitle}
                 </h2>
-                {content.storyContent.map((paragraph, index) => (
+                {content?.storyContent?.map((paragraph, index) => (
                   <p key={index} className="text-gray-600">
                     {paragraph}
                   </p>
@@ -117,7 +118,7 @@ const About = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {content.values.map((value, index) => (
+              {content?.values?.map((value, index) => (
                 <div 
                   key={index} 
                   className="bg-white p-8 rounded-xl shadow-md hover-scale"
@@ -152,7 +153,7 @@ const About = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {content.team.map((member) => (
+              {content?.team?.map((member) => (
                 <div key={member.id} className="bg-white rounded-xl shadow-md overflow-hidden hover-scale">
                   <div className="h-64 overflow-hidden">
                     <img
