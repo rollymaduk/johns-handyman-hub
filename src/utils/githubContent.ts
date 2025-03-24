@@ -15,6 +15,7 @@ import aboutFallback from "../backup/aboutFallback.json";
 import servicesFallback from "../backup/servicesFallback.json";
 import galleryFallback from "../backup/galleryFallback.json";
 import contactFallback from "../backup/contactFallback.json";
+import testimonialsFallback from "../backup/testimonialsFallback.json";
 
 /**
  * Loads content from local public folder
@@ -133,61 +134,11 @@ export function getLucideIcon(iconName: string) {
 export async function getTestimonialsContent(): Promise<TestimonialsContent> {
   try {
     const content = await loadLocalContent("content/testimonials.md");
-    return parseContent(content);
+    return parseContent<TestimonialsContent>(content);
   } catch (error) {
     console.error("Error fetching Testimonials content:", error);
-    // Fallback testimonials if needed
-    return {
-      title: "What Our Clients Say",
-      description:
-        "We take pride in our work and our clients' satisfaction is our top priority.",
-      testimonials: [
-        {
-          quote:
-            "John and his team did an amazing job on our bathroom renovation. Professional, punctual, and the quality of work is outstanding.",
-          author: "Sarah Johnson",
-          role: "Homeowner",
-          project: "Bathroom Renovation",
-        },
-        {
-          quote:
-            "Excellent service from start to finish. The roof repair was done efficiently and at a very reasonable price. Highly recommend!",
-          author: "Michael Davis",
-          role: "Property Manager",
-          project: "Roof Repair",
-        },
-        {
-          quote:
-            "The attention to detail in their painting work is remarkable. Our living room looks brand new. Will definitely use their services again.",
-          author: "Emily Wilson",
-          role: "Homeowner",
-          project: "Interior Painting",
-        },
-      ],
-      featuredTestimonials: [
-        {
-          quote:
-            "John and his team did an amazing job on our bathroom renovation. Professional, punctual, and the quality of work is outstanding.",
-          author: "Sarah Johnson",
-          role: "Homeowner",
-          project: "Bathroom Renovation",
-        },
-        {
-          quote:
-            "Excellent service from start to finish. The roof repair was done efficiently and at a very reasonable price. Highly recommend!",
-          author: "Michael Davis",
-          role: "Property Manager",
-          project: "Roof Repair",
-        },
-        {
-          quote:
-            "The attention to detail in their painting work is remarkable. Our living room looks brand new. Will definitely use their services again.",
-          author: "Emily Wilson",
-          role: "Homeowner",
-          project: "Interior Painting",
-        },
-      ],
-    };
+    // Return fallback content from JSON file
+    return testimonialsFallback as TestimonialsContent;
   }
 }
 
