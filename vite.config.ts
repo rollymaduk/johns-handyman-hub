@@ -9,6 +9,7 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
+  base: '/', // Changed from repository name to root for custom domain
   plugins: [
     react(),
     mode === 'development' &&
