@@ -78,7 +78,7 @@ const About = () => {
               <div>
                 <div className="relative">
                   <img
-                    src="/lovable-uploads/94e5ca79-040d-481e-8763-7a449c5b41ce.png"
+                    src="/uploads/94e5ca79-040d-481e-8763-7a449c5b41ce.png"
                     alt="About John's Handyman Services"
                     className="rounded-xl shadow-lg w-full object-cover"
                   />

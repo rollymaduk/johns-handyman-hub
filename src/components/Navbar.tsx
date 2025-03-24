@@ -35,11 +35,11 @@ const Navbar = () => {
       <div className="container px-4 mx-auto flex justify-between items-center">
         <NavLink to="/" className="flex items-center">
           <img
-            src="/lovable-uploads/e086db08-770e-45b7-a8c8-92c0f5b5d0c4.png"
+            src="/uploads/e086db08-770e-45b7-a8c8-92c0f5b5d0c4.png"
             alt="JC's Home Services Logo"
             className="h-12 w-auto"
           />
-          <span className="ml-2 text-xl font-display font-bold text-brand-dark">John's Handyman Services</span>
+          <span className="ml-2 text-xl font-display font-bold text-brand-dark">John Painters</span>
         </NavLink>
 
         {/* Desktop Navigation */}

@@ -3,8 +3,8 @@ import { AboutPageContent, GalleryPageContent, ServicesPageContent, ContactPageC
 import * as LucideIcons from 'lucide-react';
 
 // This should be your GitHub username and repository
-const GITHUB_USERNAME = 'your-github-username';
-const GITHUB_REPO = 'your-website-content';
+const GITHUB_USERNAME = 'rollymaduk';
+const GITHUB_REPO = 'johns-handyman-hub';
 const BRANCH = 'main';
 
 // Base URL for raw GitHub content
@@ -15,6 +15,7 @@ const RAW_GITHUB_BASE_URL = `https://raw.githubusercontent.com/${GITHUB_USERNAME
  */
 async function fetchFromGitHub(path: string): Promise<string> {
   try {
+    console.log('Fetching content from GitHub:', path);
     const response = await fetch(`${RAW_GITHUB_BASE_URL}/${path}`);
     
     if (!response.ok) {
@@ -80,21 +81,21 @@ export async function getAboutContent(): Promise<AboutPageContent> {
           name: "John Smith",
           role: "Founder & Lead Contractor",
           description: "With over 20 years of experience in home improvement, John leads our team with expertise and dedication.",
-          image: "/lovable-uploads/431254c2-b7c1-4cae-9b06-653c68c55acc.png"
+          image: "/uploads/431254c2-b7c1-4cae-9b06-653c68c55acc.png"
         },
         {
           id: 2,
           name: "Mike Johnson",
           role: "Master Painter",
           description: "Mike specializes in interior and exterior painting, delivering flawless finishes on every project.",
-          image: "/lovable-uploads/94e5ca79-040d-481e-8763-7a449c5b41ce.png"
+          image: "/uploads/94e5ca79-040d-481e-8763-7a449c5b41ce.png"
         },
         {
           id: 3,
           name: "David Wilson",
           role: "Remodeling Specialist",
           description: "David brings creative vision and technical skill to our bathroom and kitchen remodeling projects.",
-          image: "/lovable-uploads/cfa9f7f9-10f8-4d05-a1d5-85d68430d8a9.png"
+          image: "/uploads/cfa9f7f9-10f8-4d05-a1d5-85d68430d8a9.png"
         }
       ],
       ctaTitle: "Ready to Work with Our Expert Team?",
@@ -164,7 +165,7 @@ export async function getServicesContent(): Promise<ServicesPageContent> {
             "Vanity installation and custom cabinetry",
             "Plumbing and electrical updates to code"
           ],
-          image: "/lovable-uploads/421db153-9183-441f-8951-5e2dce2b4dda.png"
+          image: "/uploads/421db153-9183-441f-8951-5e2dce2b4dda.png"
         },
         {
           title: "Professional Painting",
@@ -175,7 +176,7 @@ export async function getServicesContent(): Promise<ServicesPageContent> {
             "Proper surface preparation and priming",
             "Color consultation and premium paint options"
           ],
-          image: "/lovable-uploads/431254c2-b7c1-4cae-9b06-653c68c55acc.png"
+          image: "/uploads/431254c2-b7c1-4cae-9b06-653c68c55acc.png"
         }
       ],
       processSteps: [
@@ -227,42 +228,42 @@ export async function getGalleryContent(): Promise<GalleryPageContent> {
         {
           id: 1,
           category: 'bathroom',
-          image: '/lovable-uploads/421db153-9183-441f-8951-5e2dce2b4dda.png',
+          image: '/uploads/421db153-9183-441f-8951-5e2dce2b4dda.png',
           title: 'Modern Bathroom Remodel',
           description: 'Complete bathroom renovation with custom tile work.'
         },
         {
           id: 2,
           category: 'bathroom',
-          image: '/lovable-uploads/8556ce32-651d-41d0-8f0d-5b1635194eb3.png',
+          image: '/uploads/8556ce32-651d-41d0-8f0d-5b1635194eb3.png',
           title: 'Luxury Bathroom Design',
           description: 'Elegant bathroom remodel with marble finishes.'
         },
         {
           id: 3,
           category: 'roofing',
-          image: '/lovable-uploads/f88be52a-363f-4c30-b60c-ff78f9a20ab8.png',
+          image: '/uploads/f88be52a-363f-4c30-b60c-ff78f9a20ab8.png',
           title: 'Roof Repair',
           description: 'Professional roof repair and waterproofing.'
         },
         {
           id: 4,
           category: 'painting',
-          image: '/lovable-uploads/431254c2-b7c1-4cae-9b06-653c68c55acc.png',
+          image: '/uploads/431254c2-b7c1-4cae-9b06-653c68c55acc.png',
           title: 'Exterior Painting',
           description: 'Fresh exterior paint job for improved curb appeal.'
         },
         {
           id: 5,
           category: 'exterior',
-          image: '/lovable-uploads/cfa9f7f9-10f8-4d05-a1d5-85d68430d8a9.png',
+          image: '/uploads/cfa9f7f9-10f8-4d05-a1d5-85d68430d8a9.png',
           title: 'Home Exterior',
           description: 'Exterior maintenance and repairs.'
         },
         {
           id: 6,
           category: 'renovation',
-          image: '/lovable-uploads/94e5ca79-040d-481e-8763-7a449c5b41ce.png',
+          image: '/uploads/94e5ca79-040d-481e-8763-7a449c5b41ce.png',
           title: 'Home Renovation',
           description: 'Interior renovation and structural improvements.'
         }
@@ -273,22 +274,22 @@ export async function getGalleryContent(): Promise<GalleryPageContent> {
         {
           title: "Initial Consultation",
           description: "We meet with you to understand your vision, requirements, and budget.",
-          image: "/lovable-uploads/94e5ca79-040d-481e-8763-7a449c5b41ce.png"
+          image: "/uploads/94e5ca79-040d-481e-8763-7a449c5b41ce.png"
         },
         {
           title: "Detailed Planning",
           description: "We create a comprehensive plan including materials, timeline, and detailed pricing.",
-          image: "/lovable-uploads/8556ce32-651d-41d0-8f0d-5b1635194eb3.png"
+          image: "/uploads/8556ce32-651d-41d0-8f0d-5b1635194eb3.png"
         },
         {
           title: "Expert Execution",
           description: "Our skilled team completes your project with precision and craftsmanship.",
-          image: "/lovable-uploads/431254c2-b7c1-4cae-9b06-653c68c55acc.png"
+          image: "/uploads/431254c2-b7c1-4cae-9b06-653c68c55acc.png"
         },
         {
           title: "Final Walkthrough",
           description: "We review the completed project together to ensure your complete satisfaction.",
-          image: "/lovable-uploads/421db153-9183-441f-8951-5e2dce2b4dda.png"
+          image: "/uploads/421db153-9183-441f-8951-5e2dce2b4dda.png"
         }
       ],
       ctaTitle: "Ready to Transform Your Space?",

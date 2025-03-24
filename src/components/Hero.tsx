@@ -46,7 +46,7 @@ const Hero = () => {
               
               <div className="rounded-2xl overflow-hidden shadow-2xl relative z-10 transform transition-all duration-500 hover:scale-[1.02]">
                 <img 
-                  src="/lovable-uploads/b15e162b-7952-4a92-a11e-4fb6a75cdffb.png" 
+                  src="/uploads/b15e162b-7952-4a92-a11e-4fb6a75cdffb.png" 
                   alt="Handyman service" 
                   className="w-full h-auto object-cover aspect-[4/3]"
                 />

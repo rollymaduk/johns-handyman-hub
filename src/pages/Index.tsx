@@ -33,32 +33,32 @@ const Index = () => {
 
   const workImages = [
     {
-      src: "/lovable-uploads/421db153-9183-441f-8951-5e2dce2b4dda.png",
+      src: "/uploads/421db153-9183-441f-8951-5e2dce2b4dda.png",
       alt: "Bathroom remodeling",
       caption: "Modern Bathroom Remodeling"
     },
     {
-      src: "/lovable-uploads/f88be52a-363f-4c30-b60c-ff78f9a20ab8.png",
+      src: "/uploads/f88be52a-363f-4c30-b60c-ff78f9a20ab8.png",
       alt: "Roof repair",
       caption: "Professional Roof Repairs"
     },
     {
-      src: "/lovable-uploads/8556ce32-651d-41d0-8f0d-5b1635194eb3.png",
+      src: "/uploads/8556ce32-651d-41d0-8f0d-5b1635194eb3.png",
       alt: "Bathroom renovation",
       caption: "Luxury Bathroom Renovation"
     },
     {
-      src: "/lovable-uploads/cfa9f7f9-10f8-4d05-a1d5-85d68430d8a9.png",
+      src: "/uploads/cfa9f7f9-10f8-4d05-a1d5-85d68430d8a9.png",
       alt: "Exterior house painting",
       caption: "Exterior Home Refinishing"
     },
     {
-      src: "/lovable-uploads/94e5ca79-040d-481e-8763-7a449c5b41ce.png",
+      src: "/uploads/94e5ca79-040d-481e-8763-7a449c5b41ce.png",
       alt: "Home renovation",
       caption: "Complete Home Renovation"
     },
     {
-      src: "/lovable-uploads/431254c2-b7c1-4cae-9b06-653c68c55acc.png",
+      src: "/uploads/431254c2-b7c1-4cae-9b06-653c68c55acc.png",
       alt: "Outdoor painting",
       caption: "Professional Exterior Painting"
     },
@@ -145,7 +145,7 @@ const Index = () => {
                   <div className="absolute -top-4 -left-4 w-full h-full rounded-xl border-2 border-brand-green transform rotate-3"></div>
                   <div className="relative z-10 rounded-xl overflow-hidden shadow-xl">
                     <img 
-                      src="/lovable-uploads/94e5ca79-040d-481e-8763-7a449c5b41ce.png" 
+                      src="/uploads/94e5ca79-040d-481e-8763-7a449c5b41ce.png" 
                       alt="About John's Handyman Services" 
                       className="w-full h-auto"
                     />
