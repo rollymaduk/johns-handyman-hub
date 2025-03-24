@@ -1,56 +1,42 @@
 
-# Website Content Management with MDX
+# Website Content Files
 
-This website uses MDX files to manage content. You can host these files in your GitHub repository and the website will dynamically load them.
+This directory contains example content files for your website. These are sample MDX files that show the expected format for your content.
 
-## Setup Instructions
+## How to Use These Files
 
-1. Create a GitHub repository to host your content files
-2. Update the GitHub username and repository in `src/utils/githubContent.ts`:
-   ```typescript
-   const GITHUB_USERNAME = 'your-github-username';
-   const GITHUB_REPO = 'your-website-content';
-   const BRANCH = 'main'; // or any branch you prefer
-   ```
-3. Copy the example MDX files from this folder to your repository
-4. Customize the content to fit your needs
-5. Commit and push the changes to your repository
+1. Create a new GitHub repository to host your content
+2. Upload these MDX files to a directory called `content` in your repository
+3. Update the `githubContent.ts` file with your GitHub username and repository name
+
+## Available Content Files
+
+- **about.mdx**: Content for the About page
+- **services.mdx**: Content for the Services page
+- **gallery.mdx**: Content for the Gallery page
+- **contact.mdx**: Content for the Contact page
 
 ## File Structure
 
-Your repository should have the following structure:
+Each file contains frontmatter (content between `---` lines) with structured data used to populate the website pages.
 
-```
-content/
-  about.mdx     # Content for the About page
-  services.mdx  # Content for the Services page
-  gallery.mdx   # Content for the Gallery page
-```
+## Example
 
-## MDX File Format
-
-Each MDX file contains a frontmatter section (between `---` marks) with all the content data in YAML format. For example:
-
-```mdx
+```md
 ---
 heroTitle: "Our Story & Mission"
-heroDescription: "Learn about our journey..."
-# More content properties...
+heroDescription: "Learn about our journey, values, and commitment to excellence."
+# More fields specific to each page...
 ---
 
-# Optional markdown content
-This is optional markdown content that can be included in the file.
+# Additional content (if needed)
 ```
 
-## Available Properties
+## Updating Content
 
-See the example files for all available properties. The structure matches the types defined in `src/types/content.ts`.
+To update your website content:
+1. Edit the corresponding MDX file in your GitHub repository
+2. Commit and push the changes
+3. Your website will fetch the updated content on the next page load
 
-## Troubleshooting
-
-If the content doesn't load, check your browser console for errors. Make sure:
-
-1. Your GitHub repository is public
-2. The file paths are correct
-3. The MDX files are properly formatted
-4. You've updated the GitHub username and repository in the code
+For more information on the structure of each file, see the example files in this directory.

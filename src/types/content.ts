@@ -78,3 +78,29 @@ export interface GalleryPageContent {
   ctaTitle: string;
   ctaDescription: string;
 }
+
+export interface ContactInfo {
+  icon: string;
+  title: string;
+  items: string[];
+}
+
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+export interface ContactPageContent {
+  heroTitle: string;
+  heroDescription: string;
+  contactInfoTitle: string;
+  contactInfoDescription: string;
+  contactInfoItems: ContactInfo[];
+  locationTitle: string;
+  locationDescription: string;
+  mapEmbedUrl: string;
+  faqTitle: string;
+  faqDescription: string;
+  faqItems: FaqItem[];
+  whatsappNumber: string;
+}
