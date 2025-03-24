@@ -50,8 +50,10 @@ const Contact = () => {
                     </div>
                     <div>
                       <h3 className="text-xl font-display font-semibold text-brand-dark mb-2">Phone</h3>
-                      <p className="text-gray-600">+1 234 567 8900</p>
-                      <p className="text-gray-600">Mon-Fri: 8am-6pm</p>
+                      <p className="text-gray-600">+27 70 405 02895</p>
+                      <p className="text-gray-600">Mon-Fri: 8am-9pm</p>
+                      <p className="text-gray-600">Saturday: 9am-2pm</p>
+                      <p className="text-gray-600">Sunday: Closed</p>
                     </div>
                   </div>
 
@@ -72,8 +74,8 @@ const Contact = () => {
                     </div>
                     <div>
                       <h3 className="text-xl font-display font-semibold text-brand-dark mb-2">Office</h3>
-                      <p className="text-gray-600">123 Main Street</p>
-                      <p className="text-gray-600">Anytown, USA 12345</p>
+                      <p className="text-gray-600">Weiland Cresent, Blubosrand</p>
+                      <p className="text-gray-600">Randburg 2188, South Africa</p>
                     </div>
                   </div>
 
@@ -83,7 +85,7 @@ const Contact = () => {
                     </div>
                     <div>
                       <h3 className="text-xl font-display font-semibold text-brand-dark mb-2">Business Hours</h3>
-                      <p className="text-gray-600">Monday-Friday: 8am-6pm</p>
+                      <p className="text-gray-600">Monday-Friday: 8am-9pm</p>
                       <p className="text-gray-600">Saturday: 9am-2pm</p>
                       <p className="text-gray-600">Sunday: Closed</p>
                     </div>
@@ -92,7 +94,7 @@ const Contact = () => {
               </div>
 
               <div>
-                <ContactForm whatsappNumber="+1234567890" />
+                <ContactForm whatsappNumber="+27704050289" />
               </div>
             </div>
           </div>
@@ -113,7 +115,7 @@ const Contact = () => {
             <div className="rounded-xl overflow-hidden shadow-lg">
               <iframe
                 title="Office Location"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387193.3059353029!2d-74.25986548248684!3d40.69714941932609!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sus!4v1620227525493!5m2!1sen!2sus"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3584.0252900836273!2d28.0014184!3d-26.0424979!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e95755ad4ba4da5%3A0xe17a5362a8be5b52!2sBlubosrand%2C%20Randburg%2C%202188%2C%20South%20Africa!5e0!3m2!1sen!2sus!4v1622227525493!5m2!1sen!2sus"
                 width="100%"
                 height="450"
                 style={{ border: 0 }}

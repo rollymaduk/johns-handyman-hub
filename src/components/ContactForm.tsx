@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { Send, Phone, MessageSquare, MessageCircle } from 'lucide-react';
@@ -152,7 +153,7 @@ const ContactForm = ({ whatsappNumber }: ContactFormProps) => {
                 'Sending...'
               ) : (
                 <>
-                  Send Message <Send size={18} className="ml-2" />
+                  Send to WhatsApp <Send size={18} className="ml-2" />
                 </>
               )}
             </button>
@@ -164,7 +165,7 @@ const ContactForm = ({ whatsappNumber }: ContactFormProps) => {
           
           <div className="space-y-3">
             <a 
-              href={`tel:+${whatsappNumber.replace(/\D/g, '')}`} 
+              href={`tel:${whatsappNumber}`} 
               className="flex items-center text-gray-700 hover:text-brand-green transition-colors"
             >
               <Phone size={18} className="mr-3" />
@@ -182,7 +183,7 @@ const ContactForm = ({ whatsappNumber }: ContactFormProps) => {
             </a>
             
             <a 
-              href="sms:+1234567890" 
+              href={`sms:${whatsappNumber}`} 
               className="flex items-center text-gray-700 hover:text-brand-green transition-colors"
             >
               <MessageSquare size={18} className="mr-3" />
