@@ -1,6 +1,6 @@
 
 import { NavLink } from 'react-router-dom';
-import { Phone, Mail, Home, ArrowRight } from 'lucide-react';
+import { Phone, Mail, Home, ArrowRight, Clock } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -88,15 +88,23 @@ const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-start">
                 <Home size={20} className="text-brand-green mr-3 mt-1 flex-shrink-0" />
-                <span className="text-gray-400">123 Main Street, Anytown, USA 12345</span>
+                <span className="text-gray-400">Weiland Cresent, Blubosrand, Randburg 2188, South Africa</span>
               </li>
               <li className="flex items-start">
                 <Phone size={20} className="text-brand-green mr-3 mt-1 flex-shrink-0" />
-                <span className="text-gray-400">+1 234 567 8900</span>
+                <span className="text-gray-400">+27 70 405 0289</span>
               </li>
               <li className="flex items-start">
                 <Mail size={20} className="text-brand-green mr-3 mt-1 flex-shrink-0" />
                 <span className="text-gray-400">info@johnshandyman.com</span>
+              </li>
+              <li className="flex items-start">
+                <Clock size={20} className="text-brand-green mr-3 mt-1 flex-shrink-0" />
+                <span className="text-gray-400">
+                  Mon-Fri: 8am-9pm<br />
+                  Sat: 9am-2pm<br />
+                  Sun: Closed
+                </span>
               </li>
             </ul>
           </div>
