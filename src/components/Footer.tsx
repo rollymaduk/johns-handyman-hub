@@ -13,10 +13,10 @@ const Footer = () => {
             <div className="flex items-center">
               <img
                 src="/images/logo.png"
-                alt="JC's Home Services Logo"
+                alt="JohnPainter's Home Services Logo"
                 className="h-12 w-auto"
               />
-              <span className="ml-2 text-xl font-display font-bold text-white">John's Handyman</span>
+              <span className="ml-2 text-xl font-display font-bold text-white">John Painters</span>
             </div>
             <p className="text-gray-400 mt-4">
               Professional handyman services with quality workmanship and attention to detail.
