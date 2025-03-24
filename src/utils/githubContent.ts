@@ -1,6 +1,6 @@
-
 import matter from 'gray-matter';
 import { AboutPageContent, GalleryPageContent, ServicesPageContent } from '@/types/content';
+import * as LucideIcons from 'lucide-react';
 
 // This should be your GitHub username and repository
 const GITHUB_USERNAME = 'your-github-username';
@@ -297,8 +297,9 @@ export async function getGalleryContent(): Promise<GalleryPageContent> {
   }
 }
 
-// Helper for dynamically loading icons from Lucide React
+/**
+ * Helper for dynamically loading icons from Lucide React
+ */
 export function getLucideIcon(iconName: string) {
-  const icons = require('lucide-react');
-  return icons[iconName] || icons.HelpCircle;
+  return (LucideIcons as any)[iconName] || LucideIcons.HelpCircle;
 }

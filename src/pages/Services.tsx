@@ -1,11 +1,11 @@
-
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Wrench, Home, ArrowRight, CheckCircle, Image } from 'lucide-react';
+import { ArrowRight, CheckCircle, Image } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ServiceCard from '@/components/ServiceCard';
-import { getServicesContent, getLucideIcon } from '@/utils/githubContent';
+import { getServicesContent } from '@/utils/githubContent';
+import { getLucideIcon } from '@/utils/iconUtils';
 import { ServicesPageContent } from '@/types/content';
 
 const Services = () => {
