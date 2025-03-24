@@ -15,7 +15,7 @@ contactInfoItems:
   - icon: "Mail"
     title: "Email"
     items:
-      - "info@johnshandyman.com"
+      - "andrieschibememe@gmail.com"
       - "We respond within 24 hours"
   - icon: "Home"
     title: "Office"
