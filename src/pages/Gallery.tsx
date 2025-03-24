@@ -4,71 +4,58 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import { getGalleryContent } from '@/utils/githubContent';
+import { GalleryPageContent } from '@/types/content';
 
 const Gallery = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
+  const [content, setContent] = useState<GalleryPageContent | null>(null);
+  const [loading, setLoading] = useState(true);
   const [activeFilter, setActiveFilter] = useState('all');
 
-  const galleryItems = [
-    {
-      id: 1,
-      category: 'bathroom',
-      image: '/lovable-uploads/421db153-9183-441f-8951-5e2dce2b4dda.png',
-      title: 'Modern Bathroom Remodel',
-      description: 'Complete bathroom renovation with custom tile work.'
-    },
-    {
-      id: 2,
-      category: 'bathroom',
-      image: '/lovable-uploads/8556ce32-651d-41d0-8f0d-5b1635194eb3.png',
-      title: 'Luxury Bathroom Design',
-      description: 'Elegant bathroom remodel with marble finishes.'
-    },
-    {
-      id: 3,
-      category: 'roofing',
-      image: '/lovable-uploads/f88be52a-363f-4c30-b60c-ff78f9a20ab8.png',
-      title: 'Roof Repair',
-      description: 'Professional roof repair and waterproofing.'
-    },
-    {
-      id: 4,
-      category: 'painting',
-      image: '/lovable-uploads/431254c2-b7c1-4cae-9b06-653c68c55acc.png',
-      title: 'Exterior Painting',
-      description: 'Fresh exterior paint job for improved curb appeal.'
-    },
-    {
-      id: 5,
-      category: 'exterior',
-      image: '/lovable-uploads/cfa9f7f9-10f8-4d05-a1d5-85d68430d8a9.png',
-      title: 'Home Exterior',
-      description: 'Exterior maintenance and repairs.'
-    },
-    {
-      id: 6,
-      category: 'renovation',
-      image: '/lovable-uploads/94e5ca79-040d-481e-8763-7a449c5b41ce.png',
-      title: 'Home Renovation',
-      description: 'Interior renovation and structural improvements.'
+  useEffect(() => {
+    window.scrollTo(0, 0);
+
+    async function loadContent() {
+      try {
+        const galleryContent = await getGalleryContent();
+        setContent(galleryContent);
+      } catch (error) {
+        console.error('Failed to load gallery content:', error);
+      } finally {
+        setLoading(false);
+      }
     }
-  ];
+
+    loadContent();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="flex flex-col min-h-screen">
+        <Navbar />
+        <main className="flex-grow pt-20 flex items-center justify-center">
+          <div className="animate-pulse text-lg">Loading gallery content...</div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (!content) {
+    return (
+      <div className="flex flex-col min-h-screen">
+        <Navbar />
+        <main className="flex-grow pt-20 flex items-center justify-center">
+          <div className="text-lg text-red-500">Failed to load content. Please try again later.</div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   const filteredItems = activeFilter === 'all' 
-    ? galleryItems 
-    : galleryItems.filter(item => item.category === activeFilter);
-
-  const filters = [
-    { id: 'all', label: 'All Projects' },
-    { id: 'bathroom', label: 'Bathroom' },
-    { id: 'roofing', label: 'Roofing' },
-    { id: 'painting', label: 'Painting' },
-    { id: 'renovation', label: 'Renovation' },
-    { id: 'exterior', label: 'Exterior' }
-  ];
+    ? content.galleryItems 
+    : content.galleryItems.filter(item => item.category === activeFilter);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -80,10 +67,10 @@ const Gallery = () => {
             <div className="max-w-3xl mx-auto text-center stagger-animation">
               <span className="bg-brand-green bg-opacity-10 text-brand-green px-4 py-1 rounded-full text-sm font-medium">Our Work</span>
               <h1 className="text-4xl md:text-5xl font-display font-bold mt-4 mb-6 text-brand-dark">
-                Project Gallery
+                {content.heroTitle}
               </h1>
               <p className="text-gray-600 text-lg">
-                Browse through our completed projects and see the quality of our workmanship.
+                {content.heroDescription}
               </p>
             </div>
           </div>
@@ -94,7 +81,7 @@ const Gallery = () => {
           <div className="container mx-auto px-4">
             {/* Filter Buttons */}
             <div className="flex flex-wrap justify-center gap-3 mb-12">
-              {filters.map(filter => (
+              {content.filters.map(filter => (
                 <button
                   key={filter.id}
                   onClick={() => setActiveFilter(filter.id)}
@@ -148,10 +135,10 @@ const Gallery = () => {
             <div className="text-center max-w-3xl mx-auto mb-16">
               <span className="text-brand-green text-sm font-medium uppercase tracking-wider">Our Approach</span>
               <h2 className="text-3xl md:text-4xl font-display font-bold mt-2 mb-4 text-brand-dark">
-                From Concept to Completion
+                {content.processTitle}
               </h2>
               <p className="text-gray-600">
-                Every project follows our detailed process to ensure quality results and customer satisfaction.
+                {content.processDescription}
               </p>
             </div>
 
@@ -161,65 +148,41 @@ const Gallery = () => {
               
               {/* Timeline Items */}
               <div className="space-y-12">
-                <div className="flex flex-col md:flex-row items-center">
-                  <div className="md:w-1/2 md:pr-12 md:text-right mb-6 md:mb-0">
-                    <h3 className="text-xl font-display font-semibold text-brand-dark mb-2">Initial Consultation</h3>
-                    <p className="text-gray-600">We meet with you to understand your vision, requirements, and budget.</p>
+                {content.processItems.map((item, index) => (
+                  <div key={index} className="flex flex-col md:flex-row items-center">
+                    {index % 2 === 0 ? (
+                      <>
+                        <div className="md:w-1/2 md:pr-12 md:text-right mb-6 md:mb-0">
+                          <h3 className="text-xl font-display font-semibold text-brand-dark mb-2">{item.title}</h3>
+                          <p className="text-gray-600">{item.description}</p>
+                        </div>
+                        <div className="md:w-1/2 md:pl-12 relative">
+                          <div className="hidden md:block absolute left-0 top-0 transform -translate-x-1/2 w-6 h-6 rounded-full bg-brand-green"></div>
+                          <img 
+                            src={item.image} 
+                            alt={item.title} 
+                            className="rounded-xl shadow-md w-full"
+                          />
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <div className="md:w-1/2 md:pr-12 mb-6 md:mb-0 md:order-2">
+                          <h3 className="text-xl font-display font-semibold text-brand-dark mb-2">{item.title}</h3>
+                          <p className="text-gray-600">{item.description}</p>
+                        </div>
+                        <div className="md:w-1/2 md:pl-12 relative md:order-1 md:text-right">
+                          <div className="hidden md:block absolute right-0 top-0 transform translate-x-1/2 w-6 h-6 rounded-full bg-brand-green"></div>
+                          <img 
+                            src={item.image} 
+                            alt={item.title} 
+                            className="rounded-xl shadow-md w-full"
+                          />
+                        </div>
+                      </>
+                    )}
                   </div>
-                  <div className="md:w-1/2 md:pl-12 relative">
-                    <div className="hidden md:block absolute left-0 top-0 transform -translate-x-1/2 w-6 h-6 rounded-full bg-brand-green"></div>
-                    <img 
-                      src="/lovable-uploads/94e5ca79-040d-481e-8763-7a449c5b41ce.png" 
-                      alt="Initial Consultation" 
-                      className="rounded-xl shadow-md w-full"
-                    />
-                  </div>
-                </div>
-                
-                <div className="flex flex-col md:flex-row items-center">
-                  <div className="md:w-1/2 md:pr-12 mb-6 md:mb-0 md:order-2">
-                    <h3 className="text-xl font-display font-semibold text-brand-dark mb-2">Detailed Planning</h3>
-                    <p className="text-gray-600">We create a comprehensive plan including materials, timeline, and detailed pricing.</p>
-                  </div>
-                  <div className="md:w-1/2 md:pl-12 relative md:order-1 md:text-right">
-                    <div className="hidden md:block absolute right-0 top-0 transform translate-x-1/2 w-6 h-6 rounded-full bg-brand-green"></div>
-                    <img 
-                      src="/lovable-uploads/8556ce32-651d-41d0-8f0d-5b1635194eb3.png" 
-                      alt="Detailed Planning" 
-                      className="rounded-xl shadow-md w-full"
-                    />
-                  </div>
-                </div>
-                
-                <div className="flex flex-col md:flex-row items-center">
-                  <div className="md:w-1/2 md:pr-12 md:text-right mb-6 md:mb-0">
-                    <h3 className="text-xl font-display font-semibold text-brand-dark mb-2">Expert Execution</h3>
-                    <p className="text-gray-600">Our skilled team completes your project with precision and craftsmanship.</p>
-                  </div>
-                  <div className="md:w-1/2 md:pl-12 relative">
-                    <div className="hidden md:block absolute left-0 top-0 transform -translate-x-1/2 w-6 h-6 rounded-full bg-brand-green"></div>
-                    <img 
-                      src="/lovable-uploads/431254c2-b7c1-4cae-9b06-653c68c55acc.png" 
-                      alt="Expert Execution" 
-                      className="rounded-xl shadow-md w-full"
-                    />
-                  </div>
-                </div>
-                
-                <div className="flex flex-col md:flex-row items-center">
-                  <div className="md:w-1/2 md:pr-12 mb-6 md:mb-0 md:order-2">
-                    <h3 className="text-xl font-display font-semibold text-brand-dark mb-2">Final Walkthrough</h3>
-                    <p className="text-gray-600">We review the completed project together to ensure your complete satisfaction.</p>
-                  </div>
-                  <div className="md:w-1/2 md:pl-12 relative md:order-1 md:text-right">
-                    <div className="hidden md:block absolute right-0 top-0 transform translate-x-1/2 w-6 h-6 rounded-full bg-brand-green"></div>
-                    <img 
-                      src="/lovable-uploads/421db153-9183-441f-8951-5e2dce2b4dda.png" 
-                      alt="Final Walkthrough" 
-                      className="rounded-xl shadow-md w-full"
-                    />
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
@@ -230,10 +193,10 @@ const Gallery = () => {
           <div className="container mx-auto px-4 text-center">
             <div className="max-w-3xl mx-auto stagger-animation">
               <h2 className="text-3xl md:text-4xl font-display font-bold text-brand-dark mb-6">
-                Ready to Transform Your Space?
+                {content.ctaTitle}
               </h2>
               <p className="text-gray-600 mb-8 text-lg">
-                Contact us today to discuss your project and get a free estimate.
+                {content.ctaDescription}
               </p>
               <Link 
                 to="/contact" 
