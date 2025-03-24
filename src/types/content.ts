@@ -1,4 +1,3 @@
-
 export interface TeamMember {
   id: number;
   name: string;
@@ -103,4 +102,43 @@ export interface ContactPageContent {
   faqDescription: string;
   faqItems: FaqItem[];
   whatsappNumber: string;
+}
+
+export interface Testimonial {
+  quote: string;
+  author: string;
+  role: string;
+  project?: string;
+}
+
+export interface TestimonialsContent {
+  title: string;
+  description: string;
+  testimonials: Testimonial[];
+  featuredTestimonials?: Testimonial[];
+}
+
+export interface HomePageContent {
+  servicesTitle: string;
+  servicesDescription: string;
+  featuredServices: {
+    title: string;
+    description: string;
+    icon: string;
+  }[];
+  aboutTitle: string;
+  aboutDescription: string[];
+  aboutImage: string;
+  galleryTitle: string;
+  galleryDescription: string;
+  workImages: {
+    src: string;
+    alt: string;
+    caption: string;
+  }[];
+  testimonialsTitle: string;
+  testimonialsDescription: string;
+  testimonials: Testimonial[];
+  ctaTitle: string;
+  ctaDescription: string;
 }

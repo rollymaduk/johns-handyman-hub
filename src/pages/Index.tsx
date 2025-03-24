@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Wrench, Home, Image, ArrowRight } from 'lucide-react';
 import Navbar from '@/components/Navbar';
@@ -8,62 +8,54 @@ import ServiceCard from '@/components/ServiceCard';
 import WorkCarousel from '@/components/WorkCarousel';
 import Layout from '@/components/Layout';
 import { getLocalBusinessSchema } from '@/utils/structuredData';
+import { getHomeContent } from '@/utils/githubContent';
+import { getLucideIcon } from '@/utils/iconUtils';
+import { HomePageContent } from '@/types/content';
 
 const Index = () => {
+  const [content, setContent] = useState<HomePageContent | null>(null);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     window.scrollTo(0, 0);
+    
+    async function loadContent() {
+      try {
+        const homeContent = await getHomeContent();
+        setContent(homeContent);
+      } catch (error) {
+        console.error('Failed to load home content:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadContent();
   }, []);
 
-  const testimonials = [
-    {
-      quote: "John and his team did an amazing job on our bathroom renovation. Professional, punctual, and the quality of work is outstanding.",
-      author: "Sarah Johnson",
-      role: "Homeowner",
-    },
-    {
-      quote: "Excellent service from start to finish. The roof repair was done efficiently and at a very reasonable price. Highly recommend!",
-      author: "Michael Davis",
-      role: "Property Manager",
-    },
-    {
-      quote: "The attention to detail in their painting work is remarkable. Our living room looks brand new. Will definitely use their services again.",
-      author: "Emily Wilson",
-      role: "Homeowner",
-    },
-  ];
+  if (loading) {
+    return (
+      <div className="flex flex-col min-h-screen">
+        <Navbar />
+        <main className="flex-grow pt-20 flex items-center justify-center">
+          <div className="animate-pulse text-lg">Loading content...</div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
-  const workImages = [
-    {
-      src: "/uploads/421db153-9183-441f-8951-5e2dce2b4dda.png",
-      alt: "Bathroom remodeling",
-      caption: "Modern Bathroom Remodeling"
-    },
-    {
-      src: "/uploads/f88be52a-363f-4c30-b60c-ff78f9a20ab8.png",
-      alt: "Roof repair",
-      caption: "Professional Roof Repairs"
-    },
-    {
-      src: "/uploads/8556ce32-651d-41d0-8f0d-5b1635194eb3.png",
-      alt: "Bathroom renovation",
-      caption: "Luxury Bathroom Renovation"
-    },
-    {
-      src: "/uploads/cfa9f7f9-10f8-4d05-a1d5-85d68430d8a9.png",
-      alt: "Exterior house painting",
-      caption: "Exterior Home Refinishing"
-    },
-    {
-      src: "/uploads/94e5ca79-040d-481e-8763-7a449c5b41ce.png",
-      alt: "Home renovation",
-      caption: "Complete Home Renovation"
-    },
-    {
-      src: "/uploads/431254c2-b7c1-4cae-9b06-653c68c55acc.png",
-      alt: "Outdoor painting",
-      caption: "Professional Exterior Painting"
-    },
-  ];
+  if (!content) {
+    return (
+      <div className="flex flex-col min-h-screen">
+        <Navbar />
+        <main className="flex-grow pt-20 flex items-center justify-center">
+          <div className="text-lg text-red-500">Failed to load content. Please try again later.</div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
   
   return (
     <Layout 
@@ -81,31 +73,25 @@ const Index = () => {
             <div className="container mx-auto px-4">
               <div className="text-center max-w-3xl mx-auto mb-16 stagger-animation">
                 <span className="text-brand-green text-sm font-medium uppercase tracking-wider">Our Services</span>
-                <h2 className="text-3xl md:text-4xl font-display font-bold mt-2 mb-4">Professional Handyman Services</h2>
+                <h2 className="text-3xl md:text-4xl font-display font-bold mt-2 mb-4">{content.servicesTitle}</h2>
                 <p className="text-gray-600">
-                  We provide comprehensive handyman solutions to transform and maintain your home with quality craftsmanship.
+                  {content.servicesDescription}
                 </p>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <ServiceCard 
-                  title="Interior Painting" 
-                  description="Professional interior painting services with premium materials and perfect finishes."
-                  icon={<Home size={28} />}
-                  delay={100}
-                />
-                <ServiceCard 
-                  title="Bathroom Remodeling" 
-                  description="Transform your bathroom with our comprehensive remodeling services from concept to completion."
-                  icon={<Wrench size={28} />}
-                  delay={200}
-                />
-                <ServiceCard 
-                  title="Roof Repairs" 
-                  description="Expert roof repair and maintenance services to protect your home from the elements."
-                  icon={<Home size={28} />}
-                  delay={300}
-                />
+                {content.featuredServices.map((service, index) => {
+                  const IconComponent = getLucideIcon(service.icon);
+                  return (
+                    <ServiceCard 
+                      key={index}
+                      title={service.title} 
+                      description={service.description}
+                      icon={<IconComponent size={28} />}
+                      delay={(index + 1) * 100}
+                    />
+                  );
+                })}
               </div>
               
               <div className="text-center mt-12">
@@ -127,14 +113,13 @@ const Index = () => {
                   <div className="space-y-6 stagger-animation">
                     <span className="text-brand-green text-sm font-medium uppercase tracking-wider">About Us</span>
                     <h2 className="text-3xl md:text-4xl font-display font-bold text-brand-dark">
-                      Quality Workmanship & Professional Service
+                      {content.aboutTitle}
                     </h2>
-                    <p className="text-gray-600">
-                      With over 15 years of experience in the industry, John's Handyman Services has built a reputation for excellence, reliability, and customer satisfaction. Our team of skilled professionals is dedicated to delivering high-quality workmanship on every project.
-                    </p>
-                    <p className="text-gray-600">
-                      We pride ourselves on our attention to detail, honest pricing, and commitment to completing projects on time and within budget. No job is too big or too small for our experienced team.
-                    </p>
+                    {content.aboutDescription.map((paragraph, index) => (
+                      <p key={index} className="text-gray-600">
+                        {paragraph}
+                      </p>
+                    ))}
                     <div>
                       <Link 
                         to="/about" 
@@ -151,7 +136,7 @@ const Index = () => {
                     <div className="absolute -top-4 -left-4 w-full h-full rounded-xl border-2 border-brand-green transform rotate-3"></div>
                     <div className="relative z-10 rounded-xl overflow-hidden shadow-xl">
                       <img 
-                        src="/uploads/94e5ca79-040d-481e-8763-7a449c5b41ce.png" 
+                        src={content.aboutImage} 
                         alt="About John's Handyman Services" 
                         className="w-full h-auto"
                       />
@@ -167,14 +152,14 @@ const Index = () => {
             <div className="container mx-auto px-4">
               <div className="text-center max-w-3xl mx-auto mb-16">
                 <span className="text-brand-green text-sm font-medium uppercase tracking-wider">Our Work</span>
-                <h2 className="text-3xl md:text-4xl font-display font-bold mt-2 mb-4">See Our Recent Projects</h2>
+                <h2 className="text-3xl md:text-4xl font-display font-bold mt-2 mb-4">{content.galleryTitle}</h2>
                 <p className="text-gray-600">
-                  Browse through our portfolio of completed projects and see the quality of our workmanship.
+                  {content.galleryDescription}
                 </p>
               </div>
               
               <div className="max-w-4xl mx-auto">
-                <WorkCarousel images={workImages} />
+                <WorkCarousel images={content.workImages} />
               </div>
               
               <div className="text-center mt-12">
@@ -193,14 +178,14 @@ const Index = () => {
             <div className="container mx-auto px-4">
               <div className="text-center max-w-3xl mx-auto mb-16">
                 <span className="text-brand-green text-sm font-medium uppercase tracking-wider">Testimonials</span>
-                <h2 className="text-3xl md:text-4xl font-display font-bold mt-2 mb-4">What Our Clients Say</h2>
+                <h2 className="text-3xl md:text-4xl font-display font-bold mt-2 mb-4">{content.testimonialsTitle}</h2>
                 <p className="text-gray-600">
-                  We take pride in our work and our clients' satisfaction is our top priority.
+                  {content.testimonialsDescription}
                 </p>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {testimonials.map((testimonial, index) => (
+                {content.testimonials.map((testimonial, index) => (
                   <div 
                     key={index} 
                     className="bg-white rounded-xl shadow-md p-8 hover-scale"
@@ -225,10 +210,10 @@ const Index = () => {
             <div className="container mx-auto px-4 text-center">
               <div className="max-w-3xl mx-auto stagger-animation">
                 <h2 className="text-3xl md:text-4xl font-display font-bold text-brand-dark mb-6">
-                  Ready to Transform Your Home?
+                  {content.ctaTitle}
                 </h2>
                 <p className="text-gray-600 mb-8 text-lg">
-                  Contact us today for a free quote on your next home improvement project.
+                  {content.ctaDescription}
                 </p>
                 <Link 
                   to="/contact" 

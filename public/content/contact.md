@@ -42,7 +42,7 @@ faqItems:
     answer: "Our availability varies based on current workload. Typically, we can start new projects within 2-3 weeks of quote approval. For urgent repairs, we try to accommodate as soon as possible."
   - question: "What forms of payment do you accept?"
     answer: "We accept cash, bank transfers, and all major credit cards. For larger projects, we typically require a deposit upfront with the balance due upon completion."
-whatsappNumber: "+27704050289"
+whatsappNumber: "+277040502895"
 ---
 
 # Contact Us

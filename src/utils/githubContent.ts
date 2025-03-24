@@ -3,6 +3,8 @@ import {
   GalleryPageContent,
   ServicesPageContent,
   ContactPageContent,
+  HomePageContent,
+  TestimonialsContent
 } from "@/types/content";
 import * as LucideIcons from "lucide-react";
 import frontMatter from "front-matter";
@@ -123,4 +125,112 @@ export async function getContactContent(): Promise<ContactPageContent> {
  */
 export function getLucideIcon(iconName: string) {
   return (LucideIcons as unknown)[iconName] || LucideIcons.HelpCircle;
+}
+
+/**
+ * Fetch Testimonials content
+ */
+export async function getTestimonialsContent(): Promise<TestimonialsContent> {
+  try {
+    const content = await loadLocalContent("content/testimonials.md");
+    return parseContent(content);
+  } catch (error) {
+    console.error("Error fetching Testimonials content:", error);
+    // Fallback testimonials if needed
+    return {
+      title: "What Our Clients Say",
+      description:
+        "We take pride in our work and our clients' satisfaction is our top priority.",
+      testimonials: [
+        {
+          quote:
+            "John and his team did an amazing job on our bathroom renovation. Professional, punctual, and the quality of work is outstanding.",
+          author: "Sarah Johnson",
+          role: "Homeowner",
+          project: "Bathroom Renovation",
+        },
+        {
+          quote:
+            "Excellent service from start to finish. The roof repair was done efficiently and at a very reasonable price. Highly recommend!",
+          author: "Michael Davis",
+          role: "Property Manager",
+          project: "Roof Repair",
+        },
+        {
+          quote:
+            "The attention to detail in their painting work is remarkable. Our living room looks brand new. Will definitely use their services again.",
+          author: "Emily Wilson",
+          role: "Homeowner",
+          project: "Interior Painting",
+        },
+      ],
+      featuredTestimonials: [
+        {
+          quote:
+            "John and his team did an amazing job on our bathroom renovation. Professional, punctual, and the quality of work is outstanding.",
+          author: "Sarah Johnson",
+          role: "Homeowner",
+          project: "Bathroom Renovation",
+        },
+        {
+          quote:
+            "Excellent service from start to finish. The roof repair was done efficiently and at a very reasonable price. Highly recommend!",
+          author: "Michael Davis",
+          role: "Property Manager",
+          project: "Roof Repair",
+        },
+        {
+          quote:
+            "The attention to detail in their painting work is remarkable. Our living room looks brand new. Will definitely use their services again.",
+          author: "Emily Wilson",
+          role: "Homeowner",
+          project: "Interior Painting",
+        },
+      ],
+    };
+  }
+}
+
+export async function getHomeContent(): Promise<HomePageContent> {
+  try {
+    // Get content from existing markdown files
+    const servicesContent = await getServicesContent();
+    const aboutContent = await getAboutContent();
+    const galleryContent = await getGalleryContent();
+    const testimonialsContent = await getTestimonialsContent();
+    
+    // Construct home content from these sources
+    return {
+      // Services section content
+      servicesTitle: "Professional Handyman Services",
+      servicesDescription: "We provide comprehensive handyman solutions to transform and maintain your home with quality craftsmanship.",
+      featuredServices: servicesContent.services.slice(0, 3), // Take first 3 services
+      
+      // About section content
+      aboutTitle: aboutContent.storyTitle,
+      aboutDescription: aboutContent.storyContent.slice(0, 2), // Take first 2 paragraphs for brevity
+      aboutImage: aboutContent.team[0].image, // Use founder's image
+      
+      // Gallery section content
+      galleryTitle: "See Our Recent Projects",
+      galleryDescription: "Browse through our portfolio of completed projects and see the quality of our workmanship.",
+      workImages: galleryContent.galleryItems.slice(0, 6).map(item => ({
+        src: item.image,
+        alt: item.title,
+        caption: item.title
+      })),
+      
+      // Testimonials section
+      testimonialsTitle: testimonialsContent.title,
+      testimonialsDescription: testimonialsContent.description,
+      testimonials: testimonialsContent.featuredTestimonials || testimonialsContent.testimonials.slice(0, 3),
+      
+      // CTA section
+      ctaTitle: aboutContent.ctaTitle,
+      ctaDescription: aboutContent.ctaDescription
+    };
+  } catch (error) {
+    console.error('Error fetching home content:', error);
+    throw error;
+  }
 }
