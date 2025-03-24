@@ -1,7 +1,6 @@
-
 import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
-import { Send, Phone, MessageSquare, WhatsApp } from 'lucide-react';
+import { Send, Phone, MessageSquare, MessageCircle } from 'lucide-react';
 
 interface ContactFormProps {
   whatsappNumber: string;
@@ -178,7 +177,7 @@ const ContactForm = ({ whatsappNumber }: ContactFormProps) => {
               rel="noopener noreferrer" 
               className="flex items-center text-gray-700 hover:text-brand-green transition-colors"
             >
-              <WhatsApp size={18} className="mr-3" />
+              <MessageCircle size={18} className="mr-3" />
               <span>Message on WhatsApp</span>
             </a>
             
