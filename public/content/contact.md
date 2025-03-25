@@ -8,7 +8,7 @@ contactInfoItems:
   - icon: "Phone"
     title: "Phone"
     items:
-      - "+27 70 405 02895"
+      - "+27740502895"
       - "Mon-Fri: 8am-9pm"
       - "Saturday: 9am-2pm"
       - "Sunday: Closed"
@@ -42,7 +42,7 @@ faqItems:
     answer: "Our availability varies based on current workload. Typically, we can start new projects within 2-3 weeks of quote approval. For urgent repairs, we try to accommodate as soon as possible."
   - question: "What forms of payment do you accept?"
     answer: "We accept cash, bank transfers, and all major credit cards. For larger projects, we typically require a deposit upfront with the balance due upon completion."
-whatsappNumber: "+277040502895"
+whatsappNumber: "+27740502895"
 ---
 
 # Contact Us
